@@ -1,0 +1,145 @@
+
+#jesus {
+    position: relative;
+    display: block;
+    margin: auto;
+    padding-top: 200px;
+    /* transition: moveOver 1s 2s; */
+    -webkit-animation: moveIn 2.5s ease-out both;
+    animation: moveIn 2.5s ease-out both;
+}
+
+@-webkit-keyframes moveIn {
+    0% {
+      -webkit-transform: rotate(-540deg) scale(0);
+              transform: rotate(-540deg) scale(0);
+      opacity: 0;
+    }
+    65% {
+      -webkit-transform: rotate(0) scale(1);
+              transform: rotate(0) scale(1);
+      opacity: 1;
+    }
+    70%{
+        -webkit-transform: translateX(0%) rotate(15deg);
+                transform: translateX(0%) rotate(15deg);
+    }
+    100%{
+        -webkit-transform: translateX(-50vw);
+                transform: translateX(-50vw);
+    }
+  }
+@keyframes moveIn {
+    0% {
+        -webkit-transform: rotate(-540deg) scale(0);
+                transform: rotate(-540deg) scale(0);
+        opacity: 0;
+      }
+      65% {
+        -webkit-transform: rotate(0) scale(1);
+                transform: rotate(0) scale(1);
+        opacity: 1;
+      }
+      70%{
+          -webkit-transform: translateX(0%) rotate(15deg);
+                  transform: translateX(0%) rotate(15deg);
+      }
+      100%{
+          -webkit-transform: translateX(-25vw) rotate(0);
+                  transform: translateX(-25vw) rotate(0);
+      }
+}
+
+#intro {
+    width: 200px;
+    /* overflow: hidden; */
+    position: absolute;
+    top: 250px;
+    left:50%;
+}
+
+@media screen and (max-width: 600px){
+    #intro {
+        top: 10px;
+        left: unset;
+    } 
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.linkToProject {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.grid-container{
+    animation: color 10s ease-in infinite;
+}
+
+@keyframes color {
+    0% {
+        background-color: #EDE8D7;
+    }
+    20% {
+        background-color: #BC7E2B;
+    }
+    40% {
+        background-color: #A3431D;
+    }
+    60% {
+        background-color: #CFCEA3;
+    }
+    80% {
+        background-color: #EEA125;
+    }
+    95% {
+        background-color: #DB792C;
+    }
+    100% {
+        background-color: #fff;
+    }
+}
+
+a div {
+    width: 100%;;
+}
+
+@media screen and (min-width: 1200px){
+    .container {
+        max-width: 1200px;
+    } 
+}
+
+#hand {
+    position: absolute;
+    top: -1300px;
+}
+
+@keyframes rise {
+    0%{
+        position: -5vh;
+    }
+    0%{
+        
+    }
+    0%{
+        
+    }
+    0%{
+        
+    }
+    0%{
+        
+    }
+}
+
