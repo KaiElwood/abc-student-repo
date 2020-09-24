@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+}
+
+.eye {
+    transform: rotate(90deg);
+}
+
+.eyeBall {
+    fill: black;
+}
+
+.b1{
+
+}
+
+.b2{
+
+}
+
+.eyeDiv {
+    fill: white;
+    height: 140px;
+    margin: auto;
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform:translateX(-50%) ;
+    z-index: 1;
+}
