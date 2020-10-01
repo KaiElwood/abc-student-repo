@@ -1,0 +1,57 @@
+html{
+    background: #4ECDC4;
+    background: -webkit-linear-gradient(to bottom, #556270, #4ECDC4);
+    background: linear-gradient(to bottom, #556270, #4ECDC4);
+    height: 100vh;
+    width: 100vw;
+
+}
+
+button { 
+    display: block;
+    border-radius: 15px;
+    margin: auto;
+    width: 30%;
+    height: 300px;
+    margin-top: 20%;
+    border: none;
+    color: whitesmoke;
+    background-color: #0000002d;
+    font-size: 3rem;
+    font-family: 'Courier Prime', monospace;
+}
+
+button:hover {
+    background-color: #000000c4;
+    cursor: pointer;
+}
+
+h1 { 
+    animation: spin 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateY(0) scale(1) translateY(0);
+    }
+
+    10%{
+        transform: scale(.4);
+    }
+
+    20% {
+        transform: rotateY(40deg) scale(.5);
+    }
+
+    50% {
+        transform: rotateY(180deg) scale(.6) translateY(30px);
+    }
+
+    80%{
+        transform: rotateY(340deg) scale(.4) translateY(60px);
+    }
+
+    100%{
+        transform: rotateY(360deg) scale(1) ;
+    }
+}

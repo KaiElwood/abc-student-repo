@@ -1,0 +1,14 @@
+div{
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+    margin: auto;
+    margin-top: 20px;
+}
+
+button{
+    /* left: 50%; */
+    margin: auto;
+    margin-top: 200px;
+    text-align: center;
+}
