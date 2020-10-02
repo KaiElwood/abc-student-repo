@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <svg width="960" height="500">
+        <circle cx="100" cy="100" r="40"></circle>
+        <rect x="100" y="25" width="50" height="50" fill="#134265"></rect>
+        <g transform="translate(0,200)">
+            <circle cx="100" cy="100" r="40"></circle>
+            <rect x="100" y="25" width="50" height="50" fill="#134265"></rect>
+        </g>
+
+        <g class="lines" stroke="black" stroke-width="3">
+            <path stroke-linejoin="round" fill="none" d="M300 200 L350 200 L350 20 L480 350"></path>
+            <line x1="200" y1="100" x2="220" y2="220"></line>
+        </g>
+
+    </svg>
+</body>
+</html>
