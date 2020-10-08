@@ -8,17 +8,24 @@ for (i = 0; i<10; i++){
     };
 };
 
-let height = window.innerHeight;
-let width = window.innerWidth;
+let height = window.innerHeight - 100;
+let width = window.innerWidth - 100;
 let gutters = 50;
 let block = document.getElementsByClassName("block");
-let blockSize = (width/10);
+let blockSize = (width/20);
 
 for(i=0; i< block.length; i++){
     block[i].style.width = blockSize + "px";
     block[i].style.height = blockSize +"px";
     block[i].style.margin = gutters + "px";
 };
+
+Array.from(block).forEach(function (element) {
+    element.addEventListener('click', function(){
+        console.log("clicked");
+        this.style.visibility = "hidden";
+    });
+});
 
 window.addEventListener("resize", () => {
     height = window.innerHeight;
