@@ -5,32 +5,29 @@ for (i = 0; i<10; i++){
         let element = document.createElement("div");
         element.classList.add("block");
         main.appendChild(element);
-    }
-}
+    };
+};
 
 let height = window.innerHeight;
 let width = window.innerWidth;
-let gutters = 5;
+let gutters = 50;
 let block = document.getElementsByClassName("block");
-let blockSize = (width/10 - gutters *12);
-console.log(blockSize)
+let blockSize = (width/10);
 
 for(i=0; i< block.length; i++){
     block[i].style.width = blockSize + "px";
-    block[i].style.height = "20px";
+    block[i].style.height = blockSize +"px";
     block[i].style.margin = gutters + "px";
 };
-// document.getElementsByClassName("block")[0].style.width("20px");
-
-// console.log(document.getElementsByClassName("block").forEach((e) => {
-//     e.style.width("20px")
-// }));
-// block.style.height = "height/10 - gutters * 12";
 
 window.addEventListener("resize", () => {
     height = window.innerHeight;
     width = window.innerWidth;
-    displayBlock();
+    for (i = 0; i < block.length; i++) {
+        block[i].style.width = blockSize + "px";
+        block[i].style.height = blockSize + "px";
+        block[i].style.margin = gutters + "px";
+    };
 });
 
 function displayBlock(){
@@ -41,6 +38,6 @@ function displayBlock(){
             let element = document.createElement("div");
             element.classList.add("block");
             main.appendChild(element);
-        }
-    }
-}
+        };
+    };
+};
