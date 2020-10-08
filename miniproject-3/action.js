@@ -37,14 +37,14 @@ window.addEventListener("resize", () => {
     };
 });
 
-function displayBlock(){
-    block.style.width = "width/10 - gutters * 12";
-    block.style.height = "height/10 - gutters * 12";
-    for (i = 0; i<10; i++){
-        for (j= 0; j<10; j++){
-            let element = document.createElement("div");
-            element.classList.add("block");
-            main.appendChild(element);
-        };
-    };
-};
+// function displayBlock(){
+//     block.style.width = "width/10 - gutters * 12";
+//     block.style.height = "height/10 - gutters * 12";
+//     for (i = 0; i<10; i++){
+//         for (j= 0; j<10; j++){
+//             let element = document.createElement("div");
+//             element.classList.add("block");
+//             main.appendChild(element);
+//         };
+//     };
+// };
