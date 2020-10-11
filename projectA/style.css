@@ -5,9 +5,10 @@ html, body {
 }
 
 video{
-
+    position: absolute;
 }
 
 #cat-deck{
     height: 300px;
+    left: -200px;
 }
