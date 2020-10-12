@@ -8,7 +8,15 @@ video{
     position: absolute;
 }
 
-#cat-deck{
+h1 {
+    text-align: center;
+}
+
+#main {
+    /* position: relative; */
+}
+
+#cat_deck{
     height: 300px;
     left: -200px;
 }
