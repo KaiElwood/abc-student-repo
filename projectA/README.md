@@ -1,3 +1,5 @@
+
+
 <h2>Description</h2>
 This project is an attempt to create an online version of studying with a cat next to you – something that I find to be very calming and helps me focus. I implimented several different cat gifs and added interactive elements to make the cat feel like a calming study prescence, rather than a constant annoyance.
 
