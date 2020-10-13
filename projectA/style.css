@@ -6,6 +6,7 @@ html, body {
 
 video{
     position: absolute;
+    cursor: pointer;
 }
 
 h1 {
@@ -68,6 +69,13 @@ h1 {
 
     /* width: 500px; */
     /* left: -500px; */
+}
+
+#pettingCat{
+    left: 50%;
+    top:10vh;
+    transform: translateX(-50%) ;
+    visibility: hidden;
 }
 
 #foodBowl{

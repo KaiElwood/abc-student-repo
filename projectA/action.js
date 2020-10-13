@@ -29,6 +29,20 @@ foodBowl.on("click", function(){
     setTimeout(function(){$(foodBowl).removeClass("shake");}, 600);
 })
 
+$(".catVid").on("click", function(){
+    if ($(this).css("visibility") == "visible"){
+        console.log("this is visible and working!");
+        var audio = $("#meow")[0];
+        // audio.currentTime = 0;
+        audio.play();
+        $(".catVid").css("visibility", "hidden");
+        $("#foodBowl").css("visibility", "hidden");
+        $("#pettingCat").css("visibility", "visible");
+        petCat();
+        setTimeout(function(){audio.pause();}, 1100);
+    }
+})
+
 // first, setinterval and add px to video at interval. then, after ellapsed time set visibility (or display) to none, start next cat video at previous position (plus or minus offset)
 
 // time in # of repeats, speed in millis
@@ -58,6 +72,41 @@ function catsWalk(target, speed, direction, time){
     }, 10)
     // await endPos;
 };
+
+function petCat(){
+    var count = 0;
+    $("#pettingCat").on("click", function(){
+        count++;
+        if (count >= 6){
+            var audio = $("#purring")[0];
+            var video = $("#pettingCat")[0];
+            if (audio.paused){
+                audio.currentTime = 0;
+                audio.play();
+                video.play();
+            }
+        }
+        if (count < 2){
+            setTimeout(function(){
+                count = 0;
+                $("#purring")[0].pause();
+                $("#pettingCat")[0].currentTime = 0;
+                $("#pettingCat")[0].pause();
+                $("#meow")[0].play();
+                console.log("stop meowing and look for attention")
+            }, (Math.random()*100000) + 10000);
+        
+            setTimeout(function(){
+                count = 0;
+                $("#purring")[0].pause();
+                $("#pettingCat")[0].pause();
+                $("#pettingCat").css("visibility", "hidden");
+                $("#foodBowl").css("visibility", "visible");
+                console.log("stop meowing and walk away")
+            }, (Math.random()*1000000) + 100000);
+        }
+    })
+}
 
 function catFromLeft(){
     $("#catDeck").css("left", "-500px");
