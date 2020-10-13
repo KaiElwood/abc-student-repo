@@ -13,10 +13,90 @@ h1 {
 }
 
 #main {
-    /* position: relative; */
+    position: relative;
 }
 
-#cat_deck{
+#catDeck{
     height: 300px;
-    left: -200px;
+    width: 500px;
+    top: 150px;
+    left: -500px;
+    /* z-index: 999; */
+}
+
+#catBlack{
+    height: 500px;
+    visibility: hidden;
+
+    /* width: 500px; */
+    /* left: -500px; */
+}
+
+#sandCat{
+    height: 300px;
+    width: 500px;
+    top: 250px;
+    left: 80vw;
+    visibility: hidden;
+    /* z-index: 999; */
+}
+
+#highCat{
+    height: 300px;
+    top: 250px;
+    visibility: hidden;
+
+    /* width: 500px; */
+    /* left: -500px; */
+}
+
+#leashCat{
+    height: 300px;
+    top: 450px;
+    /* transform: rotate(-20deg); */
+    visibility: hidden;
+
+    /* width: 500px; */
+    /* left: -500px; */
+}
+
+#treadmillCat{
+    height: 200px;
+    top: 550px;
+    /* transform: rotate(-20deg); */
+    visibility: hidden;
+
+    /* width: 500px; */
+    /* left: -500px; */
+}
+
+#foodBowl{
+    position: absolute;
+    left: 30%;
+    top: 50vh;
+    cursor: pointer;
+}
+
+.shake {
+    animation: shake .5s ease-in-out;
+}
+
+@keyframes shake {
+    0%{
+        transform: rotate(0deg);
+    }
+
+    30%{
+        transform: rotate(30deg);
+    }
+
+    60%{
+        transform: rotate(-20deg);
+    }
+    90%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
 }
