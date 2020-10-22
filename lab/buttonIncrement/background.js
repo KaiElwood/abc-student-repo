@@ -6,5 +6,5 @@ chrome.runtime.onMessage.addListener(function(messageContent, sender, res){
     console.log(messageContent);
     if (messageContent.type == "getCurrentValue"){
         sendResponse({type:"currentValue", value: currentValue});
-    };
+    }else if(messageContent.type == increaseValue);
 })
