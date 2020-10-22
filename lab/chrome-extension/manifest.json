@@ -1,0 +1,18 @@
+{
+    "name": "replacer",
+    "version": "1.0",
+    "description": "My first browser extension which will replace words",
+    "manifest_version": 2,
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["contentscript.js"]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    }
+}
