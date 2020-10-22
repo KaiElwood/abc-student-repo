@@ -1,0 +1,19 @@
+{
+    "name": "Tab Tracker",
+    "version": "1.0",
+    "description": "Close the Clutter! See how long you've had a tab open for and recive notifications on tabs left opened for too long",
+    "manifest_version": 2,
+    "permissions":[
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["contentscript.js"]
+        }
+    ],
+    "browser_action": {
+        // "default_icon": 
+        "default_popup": "popup/popup.html"
+    }
+}
