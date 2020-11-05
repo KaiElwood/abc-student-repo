@@ -40,17 +40,32 @@ var app = {
     },
 
     addPollution: function (AQI){
+        var color;
+        if (AQI<50) {
+            color = "green";
+        } else if (AQI<100) {
+            color = "yellow";
+        } else if (AQI<200){
+            color = "red";
+        } else {
+            color = "purple";
+        }
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.executeScript(
                 tabs[0].id,
                 {code: `
                 let element = document.createElement("div");
+                let info = document.createElement("div");
                 let blur = ${AQI}/60;
                 element.style.cssText = "width: 100vw; height: 100vh; backdrop-filter: blur(${AQI / 60}px); pointer-events: none; top: 0; z-index: 999; position:fixed;-webkit-backdrop-filter:blur(${AQI}px);pointer-events:none; ";
                 console.log(blur);
-                let textNode = document.createTextNode("The air quality index in your location is ${ AQI }");
-                element.appendChild(textNode);
+                info.style.cssText = "padding: 10px; color: 'black'; width: 100px; background-color: ${color}; pointer-events: none; top: 0; right:0; z-index: 999; position:absolute ";
+                let textNode = document.createTextNode("The air quality index in your location is ${ AQI }.");
+                let textNode2 = document.createTextNode("Higher AQI = Lower Visibility");
+                info.appendChild(textNode);
+                info.appendChild(textNode2);
                 document.body.appendChild(element);
+                document.body.appendChild(info);
                 `});
         });
     },
@@ -99,33 +114,5 @@ var app = {
                     console.log(error.message);
                 });
         }
-    },
-
-    // search for specified term, most popular from list
-    getText: function (searchTerm, pageid) {
-        // debugger;
-        var termURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=" + searchTerm + "&rvslots=*&rvprop=content&origin=*&format=json";
-        console.log(termURL);
-        fetch(termURL,
-            {
-                method: "GET"
-            }
-        )
-            .then(response => response.json())
-            .then(json => {
-                console.log(json);
-                var textResults = json.query.pages;
-                app.wikiText = textResults[`${pageid}`].revisions[0].slots.main["*"];
-                app.wikiTitle = textResults[`${pageid}`].title;
-                setTimeout(app.useRita);
-            })
-        // if (app.wikiText[0]){
-        //     app.useRita();
-        // }
-        // .then(app.useRita())
     }
-
-
-
-
 };
