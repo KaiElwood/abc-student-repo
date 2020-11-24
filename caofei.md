@@ -1,0 +1,5 @@
+How does the virtual relate to the real? I think that both Cao Fei and Eva and Franco Mattes attempt to address the question by examining human interactions and embodiement of virtual space online. Cao Fei's "RMB City" and the Mattes' "Life Sharing" began to examine human interactions with the internet before we knew just how much the internet interacted with us. 
+
+It's common in crime shows to see detectives talk about a suspect's "digital footprint" – "Life Sharing" seems to be the first instance of a digital footprint, and the irony is that the data, pre-big-data, is provided by the users themselves. Looking back on this project, I was amazed by the artists' foresight, especially in tracking gps data and recording phone conversations.
+
+In light of the Edward Snowden leaks in the US, in which the general public found out just how much information about their lives they had been sharing with the NSA, I think that the artists' work takes on even more meaning. Growing up with the internet, I think that my own reality much more mirrors that of "Life Sharing" – and I have no doubt that future generations will also see this reality as normal.
