@@ -1,0 +1,11 @@
+.words {
+    text-align: center;
+}
+
+.emoji-button{
+    font-size: large;
+}
+
+.emoji {
+    position: absolute;
+}
