@@ -99,6 +99,7 @@ socket.on("allTimes", (clientHour)=>{
 socket.on("newMsg", (imageData) => {
   let newEl = document.createElement("img");
   newEl.src = imageData;
+  newEl.classList.add("message");
   canvas.appendChild(newEl);
 })
 
