@@ -1,0 +1,82 @@
+body {
+    width:100vw;
+    height: 100vh;
+    background: linear-gradient(132deg, #9ecce6, #82bee6);
+    background-size: 400% 400%;
+    margin: 0;
+    /* animation: backgroundcolor 20s ease infinite; */
+}
+
+/* .backgroundAnimation {
+  animation-name: backgroundcolor;
+  animation-duration: 20s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  width:100vw;
+  height: 100vh;
+  background-size: 400% 400%;
+  margin: 0;
+}
+
+@keyframes backgroundcolor {
+    0%{background-position:0% 53%}
+    50%{background-position:100% 48%}
+    100%{background-position:0% 53%}
+} */
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
+}
+
+.drawspace{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 40vh;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 50px;
+  padding-right: 50px;
+  height: 200px;
+  background-color: #dbdbdb;
+}
+
+.colors, .bottomrow{
+  display: flex;
+}
+
+.brush, .back{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#buttons{
+  display:flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+#slider{
+  width: 100px;
+}
+
+#clear{
+  margin-bottom: 20px;
+}
+
+#draw {
+  height: 200px;
+}

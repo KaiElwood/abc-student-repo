@@ -1,0 +1,16 @@
+{
+  "name": "projectb",
+  "version": "1.0.0",
+  "description": "Socketio online interactive chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Kai Elwood-Dieu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socketio": "^1.0.0"
+  }
+}
