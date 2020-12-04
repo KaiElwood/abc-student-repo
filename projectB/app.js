@@ -38,8 +38,9 @@ io.on('connection', (socket) => {
     socket.on('screenshot', (screenshot) => {
         console.log("a new screenshot message has been sent");
         // screenshot[0].imageData.replace("data:image/octet-stream", 'image/png');
-        console.log(screenshot[0]);
-        io.emit('newMsg', screenshot[0].imageData);
+        // EDIT THIS BECAUSE DIFFERENT INFO IS COMING IN
+        console.log(screenshot);
+        io.emit('newMsg', screenshot);
     });
 
     socket.on('disconnect', () => {
