@@ -47,10 +47,15 @@ socket.on("allTimes", (clientHour)=>{
 });
 
 // when the finish button is pressed, send the screenshot
-socket.on("newMsg", (imageData) => {
+socket.on("newMsg", (message) => {
+  let imageData = message.photo;
+  let positionX = message.positionX;
+  let positionY = message.positionY;
   let newEl = document.createElement("img");
   newEl.src = imageData;
   newEl.classList.add("message");
+  newEl.style.left = positionX + "px";
+  newEl.style.top = positionY + "px";
   msgBoard.appendChild(newEl);
 })
 
@@ -58,6 +63,7 @@ socket.on("newMsg", (imageData) => {
 // variables for p5 canvas
 let drawcanvas = document.getElementById("drawcanvas");
 let backColor = document.getElementById("backcolor").value;
+let submitButton = document.getElementById("submit");
 let isStopped = false;
 let photo = null;
 
@@ -66,16 +72,19 @@ function setup() {
   let cnv = createCanvas(350,200);
   cnv.parent('drawcanvas');
   background(backColor);
-  console.log(backColor);
+  // console.log(backColor);
   noStroke();
 
   let clear = createButton("Clear");
   clear.parent("clear");
   clear.mousePressed(clearCanvas);
 
-  let submit = createButton("Finish");
+  let submit = createButton("Stop Drawing");
   submit.parent("submit");
-  submit.mousePressed(screenshot);
+  submit.mousePressed(function() {
+    screenshot();
+    submitButtonTextToggle();
+  });
 }
 
 // to-do!!!
@@ -88,10 +97,20 @@ function screenshot(){
   saveFrames('myCanvas', "png", 0.1, 10, d => {
     print(d);
     photo = d[0].imageData;
-    console.log(photo);
+    // console.log(photo);
     // socket.emit('screenshot', d);
     // clearCanvas();
   });
+}
+
+function submitButtonTextToggle(){
+  if (isStopped == true) {
+    console.log("changed text to start")
+    submitButton.firstChild.innerHTML = "Start Drawing";
+  } else {
+    console.log("changed text to stop")
+    submitButton.firstChild.innerHTML = "Stop Drawing";
+  }
 }
 
 function changeLoop(){
@@ -125,6 +144,7 @@ function allowDragDrop(){
       // console.log(event.target);
       let shiftX = event.clientX - canvas.getBoundingClientRect().left;
       let shiftY = event.clientY - canvas.getBoundingClientRect().top;
+      console.log(shiftY);
     
       canvas.style.position = 'absolute';
       canvas.style.zIndex = 1000;
@@ -179,18 +199,29 @@ function allowDragDrop(){
     
       // drop the ball, remove unneeded handlers
       canvas.onmouseup = function(event) {
-        console.log(event.clientX, event.clientY);
-        console.log(currentDroppable)
+        // console.log(event.clientX, event.clientY);
+        // console.log(currentDroppable)
         canvas.style.position = 'unset';
         drawcanvas.append(canvas);
         msgBoard.style.background = msgBoardBackground;
         if (currentDroppable){
+          // FINDING X POS
+          // width of full page // minus width of msgBoard // divided by two is width of side bar.
+          // Xpos minus side bar minus shiftX should be sent into message to sockets
 
-          socket.emit('screenshot', photo);
+          // FINDING Y POS
+          // height of full page times .6 // minus height of msgBoard // divided by two is height gap
+          // Ypos minus top bar minus shiftY should be sent into message to sockets
+          let XPos = event.clientX - ((window.innerWidth - msgBoard.style.width.replace("px", ""))/2) - shiftX;
+          let YPos = event.clientY - ((window.innerHeight*.6 - msgBoard.style.height.replace("px", "")) / 2) - shiftY;
+          console.log(XPos);
+          let message = {photo: photo, positionX: XPos, positionY: YPos};
+          socket.emit('screenshot', message);
+          setTimeout(clearCanvas, .1);
         }
-        // socket.emit('screenshot', d);
-        setTimeout(clearCanvas, .1);
+
         changeLoop();
+        submitButtonTextToggle();
         // add function to check if dropped 
         document.removeEventListener('mousemove', onMouseMove);
         canvas.onmouseup = null;
@@ -218,7 +249,7 @@ function allowDragDrop(){
 
 // get background function
 function getBackground(hour, backgroundArray){
-  console.log("getBackground is working");
+  // console.log("getBackground is working");
   document.body.classList.add("backgroundAnimation");
   let background = ""
   if (hour > 22 || hour < 5){
@@ -254,9 +285,4 @@ function getBackground(hour, backgroundArray){
     return backgroundArray[9];
     console.log("avg is night");
   }
-}
-
-
-function dragDropLogic(){
-  
 }

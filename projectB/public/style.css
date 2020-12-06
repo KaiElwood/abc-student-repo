@@ -76,6 +76,7 @@ body {
 
 .message {
   position: absolute;
+  height: 150px;
 }
 
 #slider{
