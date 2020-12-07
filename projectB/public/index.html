@@ -11,16 +11,13 @@
     <div class="container">
     <div id="msgBoard" class="droppable"></div>
     </div>
-    <div class="drawspace">
-      <div class="bcgflex">
-        <div class="canvasbcg">
+    <div id="drawspace">
+      <!-- <div id="drawcanvas"> -->
+        <div id="drawcanvas" class="canvasbcg">
           <img id="headerimg" src="header.svg">
-          <p><span>drag me onto the board!</span></p>
+          <p id="canvasDragger"><span>drag me onto the board!</span></p>
         </div>
-        <div class="options" id="op2">
-        </div>
-      </div>
-      <div id="drawcanvas"></div>
+      <!-- </div> -->
 
       <div class="options">
 
@@ -42,7 +39,7 @@
           </div>
           <div id="buttons">
           <div id="clear"></div>
-          <div id="submit"></div>
+          <!-- <div id="submit"></div> -->
           <!-- <button id="submit">Submit</button> -->
           </div>
         </div>

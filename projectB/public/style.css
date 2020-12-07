@@ -43,7 +43,7 @@ body {
   height: 60vh;
 }
 
-.drawspace, .bcgflex{
+#drawspace, .bcgflex{
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -53,7 +53,7 @@ body {
 }
 .bcgflex{
   position:absolute;
-  z-index: -2;
+  /* z-index: -2; */
 }
 
 .options{
@@ -62,25 +62,38 @@ body {
   position: relative;
   padding-left: 50px;
   padding-right: 50px;
-  height: 200px;
+  height: 225px;
   width:300px;
   background-color: #dbdbdb;
   font-family: chicago;
   border-style: solid;
-  border-width: 3px 6px 6px 3px;
+  /* border-width: 3px 6px 6px 3px; */
+  margin-left: 50px;
+}
+
+.p5Canvas {
+  position: absolute;
+  top: 25px;
+  width: 350px;
+  height: 200px;
 }
 
 .colors, .bottomrow{
   display: flex;
-  margin:-10px;
+  align-items: center;
+  /* margin: -10px; */
+  justify-content: space-around;
 }
 .colors input{
   height:50px;
   margin-top:-10px;
 }
 .bottomrow button{
-  font-family:chicago;
-  border:none;
+  font-family: chicago;
+  border: solid 1px;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
 }
 .brush, .back{
   display:flex;
@@ -91,12 +104,12 @@ body {
 }
 
 #buttons{
-  display:flex;
-  flex-direction: row;
-  align-items: flex-end;
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: flex-end; */
   margin-top: 20px;
-  margin-left: 35px;
-  height:70px;
+  /* margin-left: 35px; */
+  height: 70px;
 }
 
 .message {
@@ -112,19 +125,21 @@ body {
 }
 
 #drawcanvas {
-  height: 200px;
+  height: 225px;
   width: 350px;
-  border-style: solid;
-  border-width: 3px 6px 6px 3px;
-  margin:20px;
+  /* border-style: solid; */
+  /* border-width: 3px 6px 6px 3px; */
+  /* margin:20px; */
+  z-index: 0;
 }
 .canvasbcg{
-  height:230px;
-  width:350px;
-  margin:-5px 20px 20px 20px;
+  height: 225px;
+  width: 350px;
+  /* margin: -5px 20px 20px 20px; */
   border-style: solid;
-  border-width: 3px 6px 6px 3px;
+  /* border-width: 3px 6px 6px 3px; */
   background-color: #dbdbdb;
+  position: relative;
 }
 #headerimg{
   position:absolute;
@@ -132,11 +147,13 @@ body {
   width:inherit;
 }
 .canvasbcg p{
-  font-family:chicago;
-  margin:0;
+  font-family: chicago;
+  margin: 0;
   text-align: center;
-  position:relative;
-  z-index:2;
+  position: absolute;
+  top: 0;
+  left: 51px;
+  z-index: 2;
 }
 .canvasbcg p span{
   background-color: #dbdbdb;

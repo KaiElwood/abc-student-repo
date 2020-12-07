@@ -1,6 +1,7 @@
 let socket = io();
 let allTimes = [];
 let msgBoard = document.getElementById("msgBoard");
+let drawspace = document.getElementById("drawspace");
 let screenImg = null;
 let msgBoardBackground = "";
 let clientTime = new Date();
@@ -64,7 +65,7 @@ socket.on("newMsg", (message) => {
 let drawcanvas = document.getElementById("drawcanvas");
 let backColor = document.getElementById("backcolor").value;
 let submitButton = document.getElementById("submit");
-let isStopped = false;
+let isStopped = true;
 let photo = null;
 
 // p5 canvas setup and draw functions
@@ -79,45 +80,10 @@ function setup() {
   clear.parent("clear");
   clear.mousePressed(clearCanvas);
 
-  let submit = createButton("Stop Drawing");
-  submit.parent("submit");
-  submit.mousePressed(function() {
-    screenshot();
-    submitButtonTextToggle();
-  });
 }
 
 // to-do!!!
 //  ---------- take screenhot and save it, stop draw ability, and then allow drag and drop
-
-function screenshot(){
-  console.log("submit!");
-  changeLoop();
-  allowDragDrop();
-  saveFrames('myCanvas', "png", 0.1, 10, d => {
-    print(d);
-    photo = d[0].imageData;
-    // console.log(photo);
-    // socket.emit('screenshot', d);
-    // clearCanvas();
-  });
-}
-
-function submitButtonTextToggle(){
-  if (isStopped == true) {
-    console.log("changed text to start")
-    submitButton.firstChild.innerHTML = "Start Drawing";
-  } else {
-    console.log("changed text to stop")
-    submitButton.firstChild.innerHTML = "Stop Drawing";
-  }
-}
-
-function changeLoop(){
-  isStopped = !isStopped;
-  isStopped ? noLoop() : loop();
-  console.log(isStopped);
-}
 
 function clearCanvas(){
   clear();
@@ -137,11 +103,22 @@ function draw() {
 }
 
 function allowDragDrop(){
-  let canvas = drawcanvas.firstElementChild;
+  // console.log(drawcanvas.children[2])
+  let canvas = drawcanvas;
+  let selector = document.getElementById("canvasDragger");
   console.log(isStopped);
+  // console.log(event.target);
   if (isStopped){
-    canvas.onmousedown = function(event) {
-      // console.log(event.target);
+    selector.onmousedown = function(event) {
+      saveFrames('myCanvas', "png", 0.1, 10, d => {
+        print(d);
+        photo = d[0].imageData;
+        // console.log(photo);
+        // socket.emit('screenshot', d);
+        // clearCanvas();
+      });
+      console.log("The canvas has been picked up!");
+      
       let shiftX = event.clientX - canvas.getBoundingClientRect().left;
       let shiftY = event.clientY - canvas.getBoundingClientRect().top;
       console.log(shiftY);
@@ -166,7 +143,7 @@ function allowDragDrop(){
       
         canvas.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        // console.log(elemBelow);
+        console.log(elemBelow);
         canvas.hidden = false;
       
         // mousemove events may trigger out of the window (when the ball is dragged off-screen)
@@ -198,11 +175,14 @@ function allowDragDrop(){
       document.addEventListener('mousemove', onMouseMove);
     
       // drop the ball, remove unneeded handlers
-      canvas.onmouseup = function(event) {
-        // console.log(event.clientX, event.clientY);
+      selector.onmouseup = function(event) {
+        console.log("The canvas has been dropped!");
+        console.log(event.clientX, event.clientY);
         // console.log(currentDroppable)
-        canvas.style.position = 'unset';
-        drawcanvas.append(canvas);
+        canvas.style.position = 'relative';
+        canvas.style.top = 'unset';
+        canvas.style.left = 'unset';
+        drawspace.insertBefore(canvas, drawspace.firstElementChild);
         msgBoard.style.background = msgBoardBackground;
         if (currentDroppable){
           // FINDING X POS
@@ -220,8 +200,8 @@ function allowDragDrop(){
           setTimeout(clearCanvas, .1);
         }
 
-        changeLoop();
-        submitButtonTextToggle();
+        // changeLoop();
+        // submitButtonTextToggle();
         // add function to check if dropped 
         document.removeEventListener('mousemove', onMouseMove);
         canvas.onmouseup = null;
@@ -245,7 +225,7 @@ function allowDragDrop(){
 }
 
 
-
+allowDragDrop();
 
 // get background function
 function getBackground(hour, backgroundArray){
