@@ -6,7 +6,10 @@ body {
     margin: 0;
     /* animation: backgroundcolor 20s ease infinite; */
 }
-
+@font-face{
+  font-family: chicago;
+  src:url(chicago.ttf);
+}
 /* .backgroundAnimation {
   animation-name: backgroundcolor;
   animation-duration: 20s;
@@ -37,12 +40,17 @@ body {
   height: 60vh;
 }
 
-.drawspace{
+.drawspace, .bcgflex{
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   height: 40vh;
+}
+.bcgflex{
+  position:absolute;
+  z-index: -2;
 }
 
 .options{
@@ -52,13 +60,25 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   height: 200px;
+  width:300px;
   background-color: #dbdbdb;
+  font-family: chicago;
+  border-style: solid;
+  border-width: 3px 6px 6px 3px;
 }
 
 .colors, .bottomrow{
   display: flex;
+  margin:-10px;
 }
-
+.colors input{
+  height:50px;
+  margin-top:-10px;
+}
+.bottomrow button{
+  font-family:chicago;
+  border:none;
+}
 .brush, .back{
   display:flex;
   flex-direction: column;
@@ -69,9 +89,11 @@ body {
 
 #buttons{
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-end;
   margin-top: 20px;
   margin-left: 35px;
+  height:70px;
 }
 
 .message {
@@ -84,14 +106,39 @@ body {
 }
 
 #clear{
-  margin-bottom: 20px;
 }
 
 #drawcanvas {
   height: 200px;
   width: 350px;
+  border-style: solid;
+  border-width: 3px 6px 6px 3px;
+  margin:20px;
 }
-
+.canvasbcg{
+  height:230px;
+  width:350px;
+  margin:-5px 20px 20px 20px;
+  border-style: solid;
+  border-width: 3px 6px 6px 3px;
+  background-color: #dbdbdb;
+}
+#headerimg{
+  position:absolute;
+  top:2px;
+  width:inherit;
+}
+.canvasbcg p{
+  font-family:chicago;
+  margin:0;
+  text-align: center;
+  position:relative;
+  z-index:2;
+}
+.canvasbcg p span{
+  background-color: #dbdbdb;
+  padding:0px 5px 5px 5px;
+}
 .droppable{
 
 }
