@@ -2,6 +2,12 @@ let socket = io();
 let allTimes = [];
 let msgBoard = document.getElementById("msgBoard");
 let drawspace = document.getElementById("drawspace");
+let nameInput = document.getElementById("nameInput");
+nameInput.addEventListener("keyup", function(e){
+  var regex = /^[a-zA-Z\s]+$/;
+  if (regex.test(this.value) !== true)
+    this.value = this.value.replace(/[^a-zA-Z\s]+/, '');
+});
 let screenImg = null;
 let msgBoardBackground = "";
 let clientTime = new Date();
@@ -9,6 +15,7 @@ let clientHour = clientTime.getHours();
 console.log("client time: " + clientHour);
 socket.emit('clientHour', clientHour);
 
+// set up color arrays
 let documentBackgrounds = ["linear-gradient(132deg, #182247, #1f0a38)","linear-gradient(132deg, #363c6b, #3b346b)","linear-gradient(132deg, #d96f4c, #5f7bb3)","linear-gradient(132deg, #9ecce6, #82bee6)","linear-gradient(132deg, #68bae8, #62ade1)","linear-gradient(132deg, #289ddf, #2b8fe1)","linear-gradient(132deg, #4fa3c9, #6094d2)","linear-gradient(132deg, #f08b39, #6281e3)","linear-gradient(132deg, #22115c, #1f2b5e)","linear-gradient(132deg, #223667, #111e50)"];
 let canvasBackgrounds = ["linear-gradient(132deg, #1f2347 , #221b40)","linear-gradient(132deg, #424a85, #473e82)","linear-gradient(132deg, #e88361, #7293d4)","linear-gradient(132deg, #9ebce6, #8abceb)","linear-gradient(132deg, #71b0f0, #78bff0)","linear-gradient(132deg, #40a8ed, #3e9eed)","linear-gradient(132deg, #60b9e0, #6fa3e3)","linear-gradient(132deg, #ff834a, #7486ed)","linear-gradient(132deg, #352275, #243478)","linear-gradient(132deg, #2d447d, #192b6e)"];
 
@@ -52,8 +59,16 @@ socket.on("newMsg", (message) => {
   let imageData = message.photo;
   let positionX = message.positionX;
   let positionY = message.positionY;
-  let newEl = document.createElement("img");
-  newEl.src = imageData;
+  let name = message.name;
+  let newEl = document.createElement("div");
+  let newPic = document.createElement("img");
+  let newCaption = document.createElement("p");
+  newCaption.innerHTML = name;
+  newCaption.classList.add("textTitle");
+  newPic.src = imageData;
+  newPic.style.height = "150px";
+  newEl.appendChild(newCaption);
+  newEl.appendChild(newPic);
   newEl.classList.add("message");
   newEl.style.left = positionX + "px";
   newEl.style.top = positionY + "px";
@@ -194,8 +209,9 @@ function allowDragDrop(){
           // Ypos minus top bar minus shiftY should be sent into message to sockets
           let XPos = event.clientX - ((window.innerWidth - msgBoard.style.width.replace("px", ""))/2) - shiftX;
           let YPos = event.clientY - ((window.innerHeight*.6 - msgBoard.style.height.replace("px", "")) / 2) - shiftY;
+          let name = nameInput.value;
           console.log(XPos);
-          let message = {photo: photo, positionX: XPos, positionY: YPos};
+          let message = {photo: photo, positionX: XPos, positionY: YPos, name: name};
           socket.emit('screenshot', message);
           setTimeout(clearCanvas, .1);
         }
@@ -212,17 +228,17 @@ function allowDragDrop(){
 
     function enterDroppable(elem) {
       elem.style.background = 'pink';
-    }
+    };
     
     function leaveDroppable(elem) {
       elem.style.background = msgBoardBackground;
-    }  
+    };
     
     canvas.ondragstart = function() {
       return false;
     };
-  }
-}
+  };
+};
 
 
 allowDragDrop();
