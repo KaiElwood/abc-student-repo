@@ -168,6 +168,10 @@ body {
   background-color: #dbdbdb;
 }
 
+#avgTime {
+  position: absolute;
+}
+
 .canvasbcg p span{
   background-color: #dbdbdb;
   padding:0px 5px 5px 5px;

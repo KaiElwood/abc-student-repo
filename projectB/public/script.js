@@ -15,6 +15,26 @@ let clientHour = clientTime.getHours();
 console.log("client time: " + clientHour);
 socket.emit('clientHour', clientHour);
 
+let localHourSpan = document.getElementById("localHourSpan");
+let localMinuteSpan = document.getElementById("localMinuteSpan");
+let m = (clientTime.getMinutes() < 10 ? '0' : '') + clientTime.getMinutes();
+displayLocalTime();
+setInterval(displayLocalTime, 60000);
+function displayLocalTime() {
+  localHourSpan.innerHTML = clientHour;
+  localMinuteSpan.innerHTML = m;
+};
+
+let avgHourSpan = document.getElementById("avgHourSpan");
+let avgMinuteSpan = document.getElementById("avgMinuteSpan");
+// displayAvgTime();
+setTimeout(displayAvgTime, 1000);
+setInterval(displayAvgTime, 60000);
+function displayAvgTime() {
+  avgHourSpan.innerHTML = avgHour;
+  avgMinuteSpan.innerHTML = m;
+};
+
 // set up color arrays
 let documentBackgrounds = ["linear-gradient(132deg, #182247, #1f0a38)","linear-gradient(132deg, #363c6b, #3b346b)","linear-gradient(132deg, #d96f4c, #5f7bb3)","linear-gradient(132deg, #9ecce6, #82bee6)","linear-gradient(132deg, #68bae8, #62ade1)","linear-gradient(132deg, #289ddf, #2b8fe1)","linear-gradient(132deg, #4fa3c9, #6094d2)","linear-gradient(132deg, #f08b39, #6281e3)","linear-gradient(132deg, #22115c, #1f2b5e)","linear-gradient(132deg, #223667, #111e50)"];
 let canvasBackgrounds = ["linear-gradient(132deg, #1f2347 , #221b40)","linear-gradient(132deg, #424a85, #473e82)","linear-gradient(132deg, #e88361, #7293d4)","linear-gradient(132deg, #9ebce6, #8abceb)","linear-gradient(132deg, #71b0f0, #78bff0)","linear-gradient(132deg, #40a8ed, #3e9eed)","linear-gradient(132deg, #60b9e0, #6fa3e3)","linear-gradient(132deg, #ff834a, #7486ed)","linear-gradient(132deg, #352275, #243478)","linear-gradient(132deg, #2d447d, #192b6e)"];
@@ -208,7 +228,7 @@ function allowDragDrop(){
           // height of full page times .6 // minus height of msgBoard // divided by two is height gap
           // Ypos minus top bar minus shiftY should be sent into message to sockets
           let XPos = event.clientX - ((window.innerWidth - msgBoard.style.width.replace("px", ""))/2) - shiftX;
-          let YPos = event.clientY - ((window.innerHeight*.6 - msgBoard.style.height.replace("px", "")) / 2) - shiftY;
+          let YPos = event.clientY - ((window.innerHeight*.6 - msgBoard.style.height.replace("px", "")) / 2) - shiftY - 25;
           let name = nameInput.value;
           console.log(XPos);
           let message = {photo: photo, positionX: XPos, positionY: YPos, name: name};
