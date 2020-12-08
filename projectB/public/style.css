@@ -4,6 +4,7 @@ body {
     background: linear-gradient(132deg, #9ecce6, #82bee6);
     background-size: 400% 400%;
     margin: 0;
+    font-family: chicago;
     /* animation: backgroundcolor 20s ease infinite; */
 }
 @font-face{
